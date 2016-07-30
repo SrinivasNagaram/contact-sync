@@ -17,26 +17,7 @@
       <div ng-show="panel.isSelected(1)" block-ui="loadingFriends" class="block-ui-main">
         <ul class="listCards">
           <li ng-repeat="(key, friend) in linkedin | filter: searchFriend">
-            <div class="col-md-4 col-sm-12">
-              <div class="row">
-                <div class="listCard">
-                  <div class="row">
-                    <div class="col-md-5 profileImg">
-                      <a href="{{friend.profileurl}}" target="_blank">
-                        <img ng-src="{{friend.profilepic}}" alt="{{friend.firtname}} {{friend.lastname}}" style="width: 100%;">
-                      </a>
-                    </div>
-                    <div class="col-md-7 profile-content">
-                      <h2>{{friend.firstname}} {{friend.lastname}}</h2>
-                      <p class="title">{{friend.title}}</p>
-                      <p>{{friend.email}}</p>
-                      <p>{{friend.phone | tel}}  <span ng-if="friend.phonetype">({{friend.phonetype}})</span></p>
-                      <p><a href="{{friend.profileurl}}" target="_blank"><i class="fa fa-linkedin-square" ></i></a></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+           <contact-tile friendobj="friend" iconclass="fa-linkedin-square" likeme="likeme(name)"></contact-tile>
           </li>
         </ul>
         <p ng-show="noLinkedinFriends">You have not added contacts yet. Please go to <a href="#/dashboard"><strong>Dashboard</strong></a> and add contacts.</p>
@@ -44,7 +25,8 @@
       <div ng-show="panel.isSelected(2)">
         <ul class="listCards">
           <li ng-repeat="(key, friend) in facebook | filter: searchFriend" class="card">
-            <div class="col-md-4 col-sm-12">
+            <contact-tile friendobj="friend" iconclass="fa-facebook-square"></contact-tile>
+            <!-- <div class="col-md-4 col-sm-12">
               <div class="row">
                 <div class="listCard">
                   <div class="row">
@@ -63,7 +45,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </li>
         </ul>
         <p ng-show="noFacebookFriends">You have not added contacts yet. Please go to <a href="#/dashboard"><strong>Dashboard</strong></a> and add contacts.</p>
@@ -71,7 +53,8 @@
       <div ng-show="panel.isSelected(3)">
         <ul class="listCards">
           <li ng-repeat="(key, friend) in twitter | filter: searchFriend" class="card">
-            <div class="col-md-4 col-sm-12">
+            <contact-tile friendobj="friend"></contact-tile>
+           <!--  <div class="col-md-4 col-sm-12">
               <div class="row">
                 <div class="listCard">
                   <div class="row">
@@ -90,7 +73,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </li>
         </ul>
         <p ng-show="noTwitterFriends">You have not added contacts yet. Please go to <a href="#/dashboard"><strong>Dashboard</strong></a> and add contacts.</p>
@@ -98,7 +81,8 @@
       <div ng-show="panel.isSelected(4)">
         <ul class="listCards">
           <li ng-repeat="(key, friend) in google | filter: searchFriend" class="card">
-            <div class="col-md-4 col-sm-12">
+            <contact-tile friendobj="friend"></contact-tile>
+            <!-- <div class="col-md-4 col-sm-12">
               <div class="row">
                 <div class="listCard">
                   <div class="row">
@@ -117,7 +101,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </li>
         </ul>
         <p ng-show="noGoogleFriends">You have not added contacts yet. Please go to <a href="#/dashboard"><strong>Dashboard</strong></a> and add contacts.</p>
@@ -125,7 +109,8 @@
       <div ng-show="panel.isSelected(5)">
         <ul class="listCards">
           <li ng-repeat="(key, friend) in other | filter: searchFriend" class="card">
-            <div class="col-md-4 col-sm-12">
+            <contact-tile friendobj="friend"></contact-tile>
+            <!-- <div class="col-md-4 col-sm-12">
               <div class="row">
                 <div class="listCard">
                   <div class="row">
@@ -143,7 +128,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </li>
         </ul>
         <p ng-show="noOtherFriends">You have not added contacts yet. Please go to <a href="#/dashboard"><strong>Dashboard</strong></a> and add contacts.</p>

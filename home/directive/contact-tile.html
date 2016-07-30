@@ -1,0 +1,21 @@
+<div class="col-md-4 col-sm-12">
+  <div class="row">
+    <div class="listCard">
+      <div class="row">
+        <div class="col-md-5 profileImg">
+          <a href="{{friend.profileurl}}" target="_blank">
+            <img ng-src="{{friend.profilepic}}" alt="{{friend.firtname}} {{friend.lastname}}" style="width: 100%;">
+          </a>
+        </div>
+        <div class="col-md-7 profile-content">
+          <h2>{{friend.firstname}} {{friend.lastname}}</h2>
+          <p class="title">{{friend.title}}</p>
+          <p>{{friend.email}}</p>
+          <p>{{friend.phone | tel}}  <span ng-if="friend.phonetype">({{friend.phonetype}})</span></p>
+          <p><a href="{{friend.profileurl}}" target="_blank"><i class="fa {{iconclass}}" ></i></a></p>
+          <button class="btn btn-primary" ng-click="likeme({'name':friend.firstname})">Like Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
