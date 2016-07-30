@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-md-12">
+    <ul class="breadcrumb">
+      <li><a href="#/dashboard">Dashboard</a></li>
+      <li class="active">Add Contact</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Add Contact</h2>
+<hr/>
+<form name="addFriend" ng-submit="addFriends(user)" novalidate>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label" for="firstname">First Name</label>
+            <input class="form-control" type="text" ng-model="user.firstname" ng-minlength="3" ng-maxlength="18" placeholder="Srinivas" required/>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label" for="lastname">Last Name</label>
+            <input class="form-control" type="text" ng-model="user.lastname" ng-minlength="3" ng-maxlength="18" placeholder="Nagaram" required/>
+          </div>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label" for="title">Title</label>
+            <input class="form-control" type="text" ng-model="user.title" ng-minlength="3" ng-maxlength="50" placeholder="Software Engineer "/>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label" for="email">Email</label>
+            <input class="form-control" type="email" ng-model="user.email" ng-keyup="userURL(user)" placeholder="creator.srinivas@gmail.com" /> 
+          </div>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label" for="category">Category</label>
+            <select class="form-control" ng-model="user.category" ng-change="otherOption(user)" required>
+              <option value="">Select</option>
+              <option value="linkedin">LinkeIn</option>
+              <option value="facebook">Facebook</option>
+              <option value="twitter">Twitter</option>
+              <option value="google">Google</option>
+              <option value="other">Other</option>
+            </select>
+          </div> 
+        </div> 
+        <div class="col-md-8">
+          <div class="form-group">
+            <label class="control-label" for="phone">Phone</label>
+            <div class="row">
+              <div class="col-md-7 phoneBox" style="padding-right: 0">
+                <input class="form-control" type="test" ng-model="user.phone" ng-maxlength="14" angular-mask="(000) 000-0000" placeholder="(000) 000-0000"/>
+              </div>
+              <div class="col-md-5 phoneSelectBox" style="padding-left: 0">
+                <select class="form-control" ng-model="user.phonetype" ng-change="userPhone(user)">
+                  <option value="">Select</option>
+                  <option value="Cell">Cell</option>
+                  <option value="Work">Work</option>
+                  <option value="Home">Home</option>
+                </select>
+              </div>
+            </div>  
+          </div> 
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-md-12" ng-show="otherProfileUrl">
+          <div class="form-group">
+            <label class="control-label" for="profile url">Profile URL</label>
+            <input class="form-control" type="url" ng-model="user.profileurl" ng-keyup="userURL(user)" placeholder="https://www.linkedin.com/in/srinivasnagaram" required>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label class="control-label" for="profile picture">Profile Picture</label>
+        <input type="file" ngf-select ng-model="user.profilePic" name="file" ngf-accept="'image/*'" ngf-max-size="1MB" ngf-keep="true" ngf-keep-distinct="true" required ng-click="user.profilePic = []">
+        <i ng-show="addFriend.file.$error.maxSize">File too large. Upload below 1000px/1000px</i>
+        <div class="addPicture">
+          <img ngf-src="user.profilePic[0]" class="thumb" width="262" height="262"> 
+        </div>
+      </div> 
+    </div>
+    <div class="col-md-12">
+      <span style="color: red;" ng-show="hasUserMsg">This contact has been already added.</span>
+    </div>  
+  </div> 
+  <div class="row">
+    <div class="col-md-12">
+      <hr/>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" ladda="submitting">
+              <span ng-show="submitting">Submiting</span>
+              <span ng-show="!submitting">Submit</span></button>
+            <button type="reset" class="btn btn-default" ng-click="reset(user);">Reset</button>
+          </div>
+        </div>
+        <div class="col-md-9" ng-show="addedFriend">
+          <p class="alert-success">New contact is added.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

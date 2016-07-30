@@ -1,0 +1,1 @@
+!function(e){"use strict";e.module("MyContactsApp").filter("reverse",function(){return function(e){return e.slice().reverse()}})}(angular);

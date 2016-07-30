@@ -1,0 +1,191 @@
+<div ng-controller="DashboardCtrl" block-ui="loadFriends" class="block-ui-main">
+
+  <div class="col-md-12" ng-controller="TabController as panel">
+    <div class="row">
+      <div style="float: left">
+        <ul class="nav nav-pills main-nav">
+          <li ng-class="{active:panel.isSelected(1) }"><a ng-click="panel.selectTab(1)">LinkedIn</a></li>
+          <li ng-class="{active:panel.isSelected(2) }"><a ng-click="panel.selectTab(2)">Facebook</a></li>
+          <li ng-class="{active:panel.isSelected(3) }"><a ng-click="panel.selectTab(3)">Twitter</a></li>
+          <li ng-class="{active:panel.isSelected(4) }"><a ng-click="panel.selectTab(4)">Google</a></li>
+          <li ng-class="{active:panel.isSelected(5) }"><a ng-click="panel.selectTab(5)">Other</a></li>
+        </ul>
+      </div>
+      <div style="float:right">
+        <a href="#/dashboard/addcontact" class="btn btn-info">Add contact</a>
+      </div>
+    </div>
+    <div class="row block-ui-main" block-ui="loadTableData">
+      <hr>
+      <p class="alert-danger" ng-show="deletetedFriendRecord">A contect has been deleted.</p>
+      <p class="alert-success" ng-show="updatedFriendRecord">Contect has been updated.</p>
+      <div class="table-scrollable" ng-show="panel.isSelected(1)">
+        <table ng-repeat="(key, linkedinFriend) in linkedinFriendsList" bs-table-control="linkedinFriend.bsTableControl" ng-show="lTable">
+          <thead>
+            <tr>
+              <th data-field="firstname" data-sortable="true" data-width="120px">First Name</th>
+              <th data-field="lastname" data-sortable="true" data-width="120px">Last Name</th>
+              <th data-field="title" data-sortable="true" data-width="160px">Title</th>
+              <th data-field="email" data-sortable="true" data-width="150px">Email Address</th>
+              <th data-field="phone" data-sortable="true" data-width="110px">Phone</th>
+              <th data-field="profileurl" data-sortable="true" data-width="30px">Google Plus</th>
+              <th data-field="profilepic" data-sortable="true" data-width="30px">Picture</th>
+              <th data-field="actions" data-formatter="operateFormatter" data-events="curdLinkedInActions" data-width="80px">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr></tr>
+          </tbody>
+        </table>
+        <p ng-show="lfriends">There are no contacts. Please add contacts <a href="#/dashboard/addcontact"><strong>Add Contact</strong>.</a></p>
+      </div>
+      <div class="table-scrollable" ng-show="panel.isSelected(2);">
+        <table ng-repeat="(key, facebookFriend) in facebookFriendsList" bs-table-control="facebookFriend.bsTableControl" ng-show="fbTable">
+          <thead>
+            <tr>
+              <th data-field="firstname" data-sortable="true" data-width="120px">First Name</th>
+              <th data-field="lastname" data-sortable="true" data-width="120px">Last Name</th>
+              <th data-field="title" data-sortable="true" data-width="160px">Title</th>
+              <th data-field="email" data-sortable="true" data-width="150px">Email Address</th>
+              <th data-field="phone" data-sortable="true" data-width="110px">Phone</th>
+              <th data-field="profileurl" data-sortable="true" data-width="30px">Google Plus</th>
+              <th data-field="profilepic" data-sortable="true" data-width="30px">Picture</th>
+              <th data-field="actions" data-formatter="operateFormatter" data-events="curdFacebookActions" data-width="80px">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr></tr>
+          </tbody>
+        </table>
+        <p ng-show="fbfriends">There are no contacts. Please add contacts <a href="#/dashboard/addcontact"><strong>Add Contact</strong>.</a></p>
+      </div>
+
+      <div class="table-scrollable" ng-show="panel.isSelected(3)">
+        <table ng-repeat="(key, twitterFriend) in twitterFriendsList" bs-table-control="twitterFriend.bsTableControl" ng-show="tTable">
+          <thead>
+            <tr>
+              <th data-field="firstname" data-sortable="true" data-width="120px">First Name</th>
+              <th data-field="lastname" data-sortable="true" data-width="120px">Last Name</th>
+              <th data-field="title" data-sortable="true" data-width="160px">Title</th>
+              <th data-field="email" data-sortable="true" data-width="150px">Email Address</th>
+              <th data-field="phone" data-sortable="true" data-width="110px">Phone</th>
+              <th data-field="profileurl" data-sortable="true" data-width="30px">Google Plus</th>
+              <th data-field="profilepic" data-sortable="true" data-width="30px">Picture</th>
+              <th data-field="actions" data-formatter="operateFormatter" data-events="curdTwitterActions" data-width="80px">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr></tr>
+          </tbody>
+        </table>
+        <p ng-show="tfriends">There are no contacts. Please add contacts <a href="#/dashboard/addcontact"><strong>Add Contact</strong>.</a></p>
+      </div>
+
+      <div class="table-scrollable" ng-show="panel.isSelected(4)">
+        <table ng-repeat="(key, googleFriend) in googleFriendsList" bs-table-control="googleFriend.bsTableControl" ng-show="gTable">
+          <thead>
+            <tr>
+              <th data-field="firstname" data-sortable="true" data-width="120px">First Name</th>
+              <th data-field="lastname" data-sortable="true" data-width="120px">Last Name</th>
+              <th data-field="title" data-sortable="true" data-width="160px">Title</th>
+              <th data-field="email" data-sortable="true" data-width="150px">Email Address</th>
+              <th data-field="phone" data-sortable="true" data-width="110px">Phone</th>
+              <th data-field="profileurl" data-sortable="true" data-width="30px">Google Plus</th>
+              <th data-field="profilepic" data-sortable="true" data-width="30px">Picture</th>
+              <th data-field="actions" data-formatter="operateFormatter" data-events="curdGoogleActions" data-width="80px">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr></tr>
+          </tbody>
+        </table>
+        <p ng-show="gfriends">There are no contacts. Please add contacts <a href="#/dashboard/addcontact"><strong>Add Contact</strong>.</a></p>
+      </div>
+
+      <div class="table-scrollable" ng-show="panel.isSelected(5)">
+        <table ng-repeat="(key, otherFriend) in otherFriendsList" bs-table-control="otherFriend.bsTableControl" ng-show="oTable">
+          <thead>
+            <tr>
+              <th data-field="firstname" data-sortable="true" data-width="120px">First Name</th>
+              <th data-field="lastname" data-sortable="true" data-width="120px">Last Name</th>
+              <th data-field="title" data-sortable="true" data-width="160px">Title</th>
+              <th data-field="email" data-sortable="true" data-width="150px">Email Address</th>
+              <th data-field="phone" data-sortable="true" data-width="110px">Phone</th>
+              <th data-field="profilepic" data-sortable="true" data-width="30px">Picture</th>
+              <th data-field="actions" data-formatter="operateFormatter" data-events="curdOtherActions" data-width="80px">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr></tr>
+          </tbody>
+        </table>
+        <p ng-show="gfriends">There are no contacts. Please add contacts <a href="#/dashboard/addcontact"><strong>Add Contact</strong>.</a></p>
+      </div>
+ 
+      <p class="alert-danger" ng-show="noFriend">No contacts in this cetegory</p>
+    </div>
+  </div>
+
+  <modal title="Edit Contact" id="showFriendModal" visible="showFriendModal">
+    <form name="editFriendForm">
+      <div class="form-group">
+        <input type="hidden" ng-model="categoryId">
+        <input type="hidden" ng-model="category"> 
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input class="form-control" type="text" id="friendFristName">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input class="form-control" type="text" id="friendLastName">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input class="form-control" type="text" id="friendTitle">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input class="form-control" type="text" id="friendPhone">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" type="email" id="friendEmail">
+          </div>
+        </div> 
+        <div class="col-md-12" id="otherProfileUrlPopup">
+          <div class="form-group">
+            <label for="phone">Profile URL</label>
+            <input class="form-control" type="text" id="friendProfileURL">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="control-label" for="profile picture">Profile Picture</label>
+            <input type="file" id="friendProfilePic" onchange="angular.element(this).scope().fileNameChanged()">
+          </div>
+        </div>
+      </div>  
+      <button type="button" class="btn btn-info" ng-click="editFriend(categoryId, category)">Save</button>
+    </form>
+  </modal>
+
+  <modal title="Delete Friend" visible="deleteFriend" id="deleteFriendPopup">
+    <div>
+      <h4>Do you want to delete permanently?</h4>
+      <button type="button" class="btn btn-info pull-right" id="cencelDelete">Cenecel</button>
+      <button type="button" class="btn btn-danger" id="deleteFriendRecord">Delete</button>
+    </div>
+  </modal>
+ 
+</div>

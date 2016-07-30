@@ -1,0 +1,42 @@
+<div class="loginpage">
+  <div class="row">
+    <h1 class="title">Contacts App</h1>
+  </div>
+  <div class="login">
+    <h2>{{loginTitle}}</h2>
+    <form novalidate="novalidate" name="loginForm" ng-submit="">
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="Email Address" ng-model="email" required="required">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Password" ng-model="pass" required="required">
+      </div>
+      <div class="form-group" ng-show="createMode">
+        <input type="password" class="form-control" placeholder="Confirm Password" ng-model="confirm" required="required">
+      </div>
+      <button type="submit" class="btn btn-primary" ladda="submitting" data-style="expand-right" ng-click="login(email, pass);" ng-hide="createMode">
+        <span ng-show="submitting">Logging...</span>
+        <span ng-show="!submitting">Log In  <i class="fa fa-sign-in"></i></span>
+      </button>
+      <button class="btn btn-primary" ng-click="register();" ng-hide="createMode">Register</button>
+      <button type="submit" class="btn btn-primary" ladda="submitting" data-style="expand-right" ng-click="createAccount();" ng-cloak ng-show="createMode">
+        <span ng-show="submitting">Creating...</span>
+        <span ng-show="!submitting">Create Account  <i class="fa fa-user"></i></span>
+      </button>
+      <button class="btn btn-danger" ng-cloak ng-show="createMode" ng-click="cancelUser();">Cancel</button>
+      <a class="forgetpass" ng-click="forgetPass();">Forgot your password?</a>
+      <p ng-show="err" class="label label-warning error">{{err}}</p>
+      <p ng-show="emailSuccess" class="label label-success error">{{emailSuccess}}</p>
+    </form>
+    <form novalidate ng-submit="">
+      <div ng-hide="forgetMode">
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Email Address" ng-model="resetPass.email" required="required">
+        </div>
+        <button class="btn btn-primary btn-sm" ng-click="resetUserPassword(resetPass);">Reset Password</button>
+        <p ng-show="emailErr" class="label label-danger error">{{emailErr}}</p>
+      </div>
+    </form>
+    <p class="authorinfo">Developed by Srinivas Nagaram.</p>
+  </div> 
+</div>

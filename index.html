@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" ng-app="MyContactsApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title ng-bind="title"></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/normalize.css" />
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/bootstrap-table.min.css" />
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="assets/css/ladda-themeless.min.css">
+  <link rel="stylesheet" href="assets/css/angular-block-ui.css" />
+  <link rel="stylesheet" href="assets/css/my-contacts-app.css" />
+</head>
+
+<body ng-cloak class="body">
+
+  <header ng-controller="headerController" data-ng-include="'tpl/header.html'"></header>
+
+  <div class="container main-content">
+    <div ng-view></div>
+  </div>
+
+  <footer class="footer" ng-show="navs">
+    <p><a href="http://www.srinivasnagaram.com/">Developed by www.SrinivasNagaram.com</a></p>
+  </footer>
+
+  <!-- ALL LIBS -->
+  <script src="js/vendor/jquery/jquery-1.11.3.min.js"></script>
+  <script src="js/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="js/vendor/bootstrap/bootstrap-table.min.js"></script>
+  <script src="js/vendor/angular/angular.min.js"></script>
+  <script src="js/vendor/angular/angular-route.min.js"></script>
+  <script src="js/vendor/angular/angular-ui-router.min.js"></script>
+  <script src="js/vendor/angular/ng-file-upload.js"></script>
+  <script src="js/vendor/angular/angular-messages.min.js"></script>
+  <script src="js/vendor/bootstrap/ui-utils.js"></script>
+  <script src="js/vendor/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+  <script src="js/vendor/angular/bootstrap-table-angular.js"></script>
+  <script src="js/vendor/angular/jcs-auto-validate.min.js"></script>
+  <script src="js/vendor/angular/spin.js"></script>
+  <script src="js/vendor/angular/ladda.min.js"></script>
+  <script src="js/vendor/firebase/firebase.js"></script>
+  <script src="js/vendor/firebase/angularfire.min.js"></script>
+  <script src="js/vendor/angular/angular-block-ui.js"></script>
+  <script src="js/vendor/angular/angular-simple-mask.js"></script>
+
+    <!-- MY CONTACTS APP -->
+    <script src="js/my-contacts-app.js"></script>
+    <script src="js/config/config.js"></script>
+
+    <script src="js/components/appversion/appversion-directive.js"></script>
+    <script src="js/components/auth/auth.js"></script>
+    <script src="js/components/firebase.utils/firebase.utils.js"></script>
+    <script src="js/components/ngcloak/ngcloak-decorator.js"></script>
+    <script src="js/components/reverse/reverse-filter.js"></script>
+    <script src="js/components/security/security.js"></script>
+    <script src="js/components/model/modelpopup.js"></script>
+    <script src="js/components/filters/phone.js"></script>
+    <script src="js/components/services/allContacts.js"></script>
+
+    <script src="home/home.js"></script>
+    <script src="login/login.js"></script>
+    <script src="account/dashboard/dashboard.js"></script>
+    <script src="account/profile/profile.js"></script>
+
+</body>
+
+</html>

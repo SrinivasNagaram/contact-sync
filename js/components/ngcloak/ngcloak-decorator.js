@@ -1,0 +1,1 @@
+!function(n){"use strict";n.module("MyContactsApp").config(["$provide",function(n){n.decorator("ngCloakDirective",["$delegate","Auth",function(n,t){var e=n[0],i=e.compile;return e.compile=function(n,o){t.$waitForAuth().then(function(){i.call(e,n,o)})},n}])}])}(angular);

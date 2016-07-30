@@ -1,0 +1,90 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="userProfilePan">
+      <div class="userProfileImgPan">
+        <img ng-src="{{profile.profilepic}}" class="userProfileImg">
+      </div>
+      <span><strong>{{profile.name}}</strong><br></span>
+      <span style="font-size:13px;">{{profile.company}}<br></span>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <hr>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="row">
+    <form name="myProfileForm" ng-submit="updateProfile(myprofile)" class="col-md-4" novalidate>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" ng-model="myprofile.newName" placeholder="Enter new name">
+      </div>
+      <div class="form-group">
+        <label>Company</label>
+        <input type="text" class="form-control" ng-model="myprofile.company" placeholder="Your company">
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="profile picture">Upload/Update Picture</label>
+        <input type="file" ngf-select ng-model="myprofile.profilePics" name="file" ngf-accept="'image/*'" ngf-max-size="1MB" ngf-keep="true" ngf-keep-distinct="true">
+        <i ng-show="myProfileForm.file.$error.maxSize">File too large. Upload below 1000px/1000px</i>
+        <div ng-repeat="profilePic in myprofile.profilePics" class="userUploadImg">
+          <img ngf-thumbnail="!profilePic.$error && profilePic" class="thumb" width="40" height="40">
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+      </div>
+      <div class="form-group">
+        <p class="label label-success error" ng-show="nameMsg">{{nameMsg}}</p>
+        <br>
+      </div>
+    </form>
+
+    <form ng-submit="" class="col-md-4" novalidate>
+      <div class="form-group">
+        <label>Old Password</label>
+        <input type="password" class="form-control" ng-keypress="clear()" ng-model="oldpass" placeholder="Current Password" required>
+      </div>
+      <div class="form-group">
+        <label>New Password</label>
+        <input type="password" class="form-control" ng-keypress="clear()" ng-model="newpass" placeholder="New Password" required>
+      </div>
+      <div class="form-group">
+        <label>Confirm New Password</label>
+        <input type="password" class="form-control" ng-keypress="clear()" ng-model="confirm" placeholder="Match Password" required>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" ng-click="changePassword(oldpass, newpass, confirm)">Change Password</button>
+      </div>
+      <div class="form-group">
+        <p class="label label-danger error" ng-show="err">{{err}}</p>
+        <p class="label label-success error" ng-show="msg">{{msg}}</p>
+        <br>
+      </div>
+    </form>
+
+    <form ng-submit="" class="col-md-4" novalidate>
+      <div class="form-group">
+        <label>Current Email</label>
+        <input class="form-control" type="email" ng-model="profile.email">
+      </div>
+      <div class="form-group">
+        <label>New Email</label>
+        <input class="form-control" type="email" ng-model="newEmail" placeholder="New Email Address" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input class="form-control" type="password" ng-keypress="clear()" ng-model="pass" placeholder="Current Password" required>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" ng-click="changeEmail(pass, newEmail)">Update Email</button>
+      </div>
+      <div class="form-group">
+        <p class="label label-danger error" ng-show="emailerr">{{emailerr}}</p>
+        <p class="label label-success error" ng-show="emailmsg">{{emailmsg}}</p>
+      </div>
+    </form>
+  </div>
+</div>

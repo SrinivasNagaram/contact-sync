@@ -1,0 +1,1 @@
+!function(n){"use strict";n.module("MyContactsApp").directive("appVersion",["version",function(n){return function(e,i){i.text(n)}}])}(angular);

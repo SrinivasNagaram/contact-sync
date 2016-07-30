@@ -1,0 +1,153 @@
+<div ng-contorller="HomeCtrl">
+  <div class="col-md-12" ng-controller="HomeTabController as panel">
+    <div class="row">
+      <ul class="nav nav-pills main-nav">
+        <li ng-class="{active:panel.isSelected(1)}"><a ng-click="panel.selectTab(1)">LinkedIn</a></li>
+        <li ng-class="{active:panel.isSelected(2)}"><a ng-click="panel.selectTab(2)">Facebook</a></li>
+        <li ng-class="{active:panel.isSelected(3)}"><a ng-click="panel.selectTab(3)">Twitter</a></li>
+        <li ng-class="{active:panel.isSelected(4)}"><a ng-click="panel.selectTab(4)">Google</a></li>
+        <li ng-class="{active:panel.isSelected(5)}"><a ng-click="panel.selectTab(5)">Other</a></li>
+        <li class="serachBox">
+          <input type="text" class="form-control searchFriend" ng-model="searchFriend" placeholder="Search contacts..">
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <hr>
+      <div ng-show="panel.isSelected(1)" block-ui="loadingFriends" class="block-ui-main">
+        <ul class="listCards">
+          <li ng-repeat="(key, friend) in linkedin | filter: searchFriend">
+            <div class="col-md-4 col-sm-12">
+              <div class="row">
+                <div class="listCard">
+                  <div class="row">
+                    <div class="col-md-5 profileImg">
+                      <a href="{{friend.profileurl}}" target="_blank">
+                        <img ng-src="{{friend.profilepic}}" alt="{{friend.firtname}} {{friend.lastname}}" style="width: 100%;">
+                      </a>
+                    </div>
+                    <div class="col-md-7 profile-content">
+                      <h2>{{friend.firstname}} {{friend.lastname}}</h2>
+                      <p class="title">{{friend.title}}</p>
+                      <p>{{friend.email}}</p>
+                      <p>{{friend.phone | tel}}  <span ng-if="friend.phonetype">({{friend.phonetype}})</span></p>
+                      <p><a href="{{friend.profileurl}}" target="_blank"><i class="fa fa-linkedin-square" ></i></a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p ng-show="noLinkedinFriends">You have not added contacts yet. Please go to <a href="#/dashboard"><strong>Dashboard</strong></a> and add contacts.</p>
+      </div>
+      <div ng-show="panel.isSelected(2)">
+        <ul class="listCards">
+          <li ng-repeat="(key, friend) in facebook | filter: searchFriend" class="card">
+            <div class="col-md-4 col-sm-12">
+              <div class="row">
+                <div class="listCard">
+                  <div class="row">
+                    <div class="col-md-5 profileImg">
+                      <a href="{{friend.profileurl}}" target="_blank">
+                        <img ng-src="{{friend.profilepic}}" alt="{{friend.firtname}} {{friend.lastname}}" style="width: 100%;">
+                      </a>
+                    </div>
+                    <div class="col-md-7 profile-content">
+                      <h2>{{friend.firstname}} {{friend.lastname}}</h2>
+                      <p class="title">{{friend.title}}</p>
+                      <p>{{friend.email}}</p>
+                      <p>{{friend.phone | tel}}  <span ng-if="friend.phone">({{friend.phonetype}})</span></p>
+                      <p><a href="{{friend.profileurl}}" target="_blank"><i class="fa fa-facebook-official" ></i></a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p ng-show="noFacebookFriends">You have not added contacts yet. Please go to <a href="#/dashboard"><strong>Dashboard</strong></a> and add contacts.</p>
+      </div>
+      <div ng-show="panel.isSelected(3)">
+        <ul class="listCards">
+          <li ng-repeat="(key, friend) in twitter | filter: searchFriend" class="card">
+            <div class="col-md-4 col-sm-12">
+              <div class="row">
+                <div class="listCard">
+                  <div class="row">
+                    <div class="col-md-5 profileImg">
+                      <a href="{{friend.profileurl}}" target="_blank">
+                        <img ng-src="{{friend.profilepic}}" alt="{{friend.firtname}} {{friend.lastname}}" style="width: 100%;">
+                      </a>
+                    </div>
+                    <div class="col-md-7 profile-content">
+                      <h2>{{friend.firstname}} {{friend.lastname}}</h2>
+                      <p class="title">{{friend.title}}</p>
+                      <p>{{friend.email}}</p>
+                      <p>{{friend.phone | tel}}  <span ng-if="friend.phone">({{friend.phonetype}})</span></p>
+                      <p><a href="{{friend.profileurl}}" target="_blank"><i class="fa fa-twitter-square" ></i></a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p ng-show="noTwitterFriends">You have not added contacts yet. Please go to <a href="#/dashboard"><strong>Dashboard</strong></a> and add contacts.</p>
+      </div>
+      <div ng-show="panel.isSelected(4)">
+        <ul class="listCards">
+          <li ng-repeat="(key, friend) in google | filter: searchFriend" class="card">
+            <div class="col-md-4 col-sm-12">
+              <div class="row">
+                <div class="listCard">
+                  <div class="row">
+                    <div class="col-md-5 profileImg">
+                      <a href="{{friend.profileurl}}" target="_blank">
+                        <img ng-src="{{friend.profilepic}}" alt="{{friend.firtname}} {{friend.lastname}}" style="width: 100%;">
+                      </a>
+                    </div>
+                    <div class="col-md-7 profile-content">
+                      <h2>{{friend.firstname}} {{friend.lastname}}</h2>
+                      <p class="title">{{friend.title}}</p>
+                      <p>{{friend.email}}</p>
+                      <p>{{friend.phone | tel}}  <span ng-if="friend.phone">({{friend.phonetype}})</span></p>
+                      <p><a href="{{friend.profileurl}}" target="_blank"><i class="fa fa-google-plus-square" ></i></a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p ng-show="noGoogleFriends">You have not added contacts yet. Please go to <a href="#/dashboard"><strong>Dashboard</strong></a> and add contacts.</p>
+      </div>
+      <div ng-show="panel.isSelected(5)">
+        <ul class="listCards">
+          <li ng-repeat="(key, friend) in other | filter: searchFriend" class="card">
+            <div class="col-md-4 col-sm-12">
+              <div class="row">
+                <div class="listCard">
+                  <div class="row">
+                    <div class="col-md-5 profileImg">
+                      <a href="{{friend.profileurl}}" target="_blank">
+                        <img ng-src="{{friend.profilepic}}" alt="{{friend.firtname}} {{friend.lastname}}" style="width: 100%;">
+                      </a>
+                    </div>
+                    <div class="col-md-7 profile-content">
+                      <h2>{{friend.firstname}} {{friend.lastname}}</h2>
+                      <p class="title">{{friend.title}}</p>
+                      <p>{{friend.email}}</p>
+                      <p>{{friend.phone | tel}}  <span ng-if="friend.phone">({{friend.phonetype}})</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <p ng-show="noOtherFriends">You have not added contacts yet. Please go to <a href="#/dashboard"><strong>Dashboard</strong></a> and add contacts.</p>
+      </div> 
+    </div>
+  </div>
+</div>
